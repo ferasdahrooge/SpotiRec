@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./Header.scss";
 
 interface HeaderProps {
   title: String;
@@ -9,13 +10,14 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ title, links }) => {
   return (
     <div className='Header'>
-      <div className='title'></div>
-      <h1>{title}</h1>
+      <div className='Header__title'>{title}</div>
       <ul className='Header__links'>
         {Object.keys(links).map((link) => {
           return (
             <li key={link}>
-              <NavLink to={link}>{links[link]}</NavLink>
+              <NavLink className='Header__link' to={link}>
+                {links[link]}
+              </NavLink>
             </li>
           );
         })}

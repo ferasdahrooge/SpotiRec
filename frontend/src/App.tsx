@@ -1,16 +1,24 @@
 import React from "react";
 import "./App.scss";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
-import Home from "./Routes/Home/Home";
-import Header from "./Components/Header/Header";
+import Main from "./Layout/Layout";
+import Home from "./Content/Home/Home";
+import About from "./Content/About/About";
+import Results from "./Content/Results/Results";
 
 const App = () => {
   let routes = useRoutes([
     {
       path: "/",
-      element: (
-        <Header title='SpotiRec' links={{ "/": "Home", "/about": "About" }} />
-      ),
+      element: <Main content={Home} />,
+    },
+    {
+      path: "/about",
+      element: <Main content={About} />,
+    },
+    {
+      path: "/results",
+      element: <Main content={Results} />,
     },
   ]);
   return routes;

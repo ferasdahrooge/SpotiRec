@@ -3,14 +3,22 @@ import { NavLink } from "react-router-dom";
 import "./Header.scss";
 
 interface HeaderProps {
-  title: String;
+  title: { [key: string]: String };
   links: { [key: string]: String };
 }
 
 const Header: React.FC<HeaderProps> = ({ title, links }) => {
   return (
     <div className='Header'>
-      <div className='Header__title'>{title}</div>
+      <div className='Header__title'>
+        {Object.keys(title).map((link) => {
+          return (
+            <NavLink key={link} to={link}>
+              {title[link]}
+            </NavLink>
+          );
+        })}
+      </div>
       <ul className='Header__links'>
         {Object.keys(links).map((link) => {
           return (

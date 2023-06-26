@@ -7,8 +7,11 @@
   padding: 16px;
 
   &__title {
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
+    background: -webkit-linear-gradient(#696464, rgb(32, 161, 32));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   &__links {
     display: flex;
@@ -21,9 +24,11 @@
   &__link {
     font-family: "Gill Sans";
     text-decoration: none;
-    color: green;
+    color: rgb(32, 161, 32);
+    transition: font-size 0.33s;
     &:hover {
-      color: darkgreen;
+      color: rgb(20, 123, 20);
+      font-size: 22px;
     }
   }
 }

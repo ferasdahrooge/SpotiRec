@@ -1,26 +1,29 @@
 import React from "react";
 import "./App.scss";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import Home from "./Routes/Home/Home";
+import Header from "./Components/Header/Header";
 
-let name: string;
-let age: number;
-let isPresent: boolean;
-let role: [number, string];
-
-type Person = {
-  name: string;
-  age: number;
-  isPresent: boolean;
-  role: [number, string];
+const App = () => {
+  let routes = useRoutes([
+    {
+      path: "/",
+      element: (
+        <Header title='SpotiRec' links={{ "/": "Home", "/about": "About" }} />
+      ),
+    },
+  ]);
+  return routes;
 };
 
-let value: unknown;
-
-const App: React.FC = () => {
+const AppWrapper = () => {
   return (
     <div className='App'>
-      <header className='App-header'>{name} Learn React</header>
+      <Router>
+        <App />
+      </Router>
     </div>
   );
 };
 
-export default App;
+export default AppWrapper;

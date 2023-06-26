@@ -1,19 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.scss";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileUpload } from "@fortawesome/free-solid-svg-icons";
 
 const Home: React.FC = () => {
+  const [text, setText] = useState("");
+  const [error, setError] = useState(false);
+
+  const submit = () => {
+    if (text.length === 0) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
+
   return (
     <div className='Home'>
+      <h1>Find the Perfect Songs For You</h1>
       <TextField
+        className='Home__input'
         id='filled-basic'
-        label='Tell Us Yourself'
+        label='Enter Text to Find Perfect Songs for You'
         variant='filled'
         multiline
-        rows={16}
+        onChange={(e) => setText(e.target.value)}
+        error={error}
+        helperText={error ? "Please Input Text" : ""}
+        rows={10}
       />
-      <Button variant='contained'>Find</Button>
+      <div className='Home__buttons'>
+        <Button
+          className='Home__buttons__button'
+          variant='contained'
+          onClick={submit}
+        >
+          Submit
+        </Button>
+        <Button className='Home__buttons__button' variant='contained'>
+          <FontAwesomeIcon icon={faFileUpload} />
+          &nbsp; Insert File
+        </Button>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,33 @@
 .Home {
   display: flex;
   flex-direction: column;
+  text-align: center;
   margin: 0 auto;
   width: 66%;
-  gap: 16px;
+  gap: 12px;
+
+  &__input {
+    color: green !important;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 12px;
+
+    &__button {
+      flex: 1;
+      background: rgb(32, 161, 32) !important;
+      &:hover {
+        background: rgb(28, 141, 28) !important;
+      }
+    }
+  }
+}
+
+h1 {
+  background: -webkit-linear-gradient(#696464, rgb(32, 161, 32));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 10;
+  font-family: "Roboto", sans-serif;
 }

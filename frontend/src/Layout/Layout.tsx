@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ content: Content }) => {
         links={{ "/": "Home", "/about": "About" }}
       />
       <Content />
-      <Footer name='Powered By Some Random' />
+      <Footer name='Powered By Creator' />
     </div>
   );
 };

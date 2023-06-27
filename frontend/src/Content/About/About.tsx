@@ -5,7 +5,7 @@ const About: React.FC = () => {
   return (
     <div className='About'>
       <div className='About__project'>
-        <h1>About</h1>
+        <h2>About</h2>
         <br />
         <br />
         <p>
@@ -22,7 +22,7 @@ const About: React.FC = () => {
         <br></br>
       </div>
       <div className='About__motive'>
-        <h1>Motive</h1>
+        <h2>Motive</h2>
         <br />
         <br />
         <p>

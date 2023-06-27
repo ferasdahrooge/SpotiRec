@@ -5,3 +5,16 @@
   width: 66%;
   font-size: 20px;
 }
+
+@media screen and (max-width: 768px) {
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .About {
+    margin-bottom: 12px;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 16px;
+  }
+}

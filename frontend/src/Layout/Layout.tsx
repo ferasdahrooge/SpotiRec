@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ content: Content }) => {
   return (
     <div className='Main'>
       <Header
-        title={{ "/": "SpotiRec" }}
+        title={{ "/": "SpotiRec." }}
         links={{ "/": "Home", "/about": "About" }}
       />
       <Content />

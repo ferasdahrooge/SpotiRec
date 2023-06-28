@@ -19,7 +19,7 @@ const Home: React.FC = () => {
 
   return (
     <div className='Home'>
-      <h1>Find the Perfect Songs For You</h1>
+      <h2>Find the Perfect Songs For You</h2>
       <TextField
         className='Home__input'
         id='filled-basic'

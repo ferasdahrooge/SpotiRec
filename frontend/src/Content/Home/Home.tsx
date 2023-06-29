@@ -1,19 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, MouseEvent } from "react";
 import "./Home.scss";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileUpload } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const Home: React.FC = () => {
-  const [text, setText] = useState("");
-  const [error, setError] = useState(false);
+  const [text, setText] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
 
-  const submit = () => {
+  const submit = (event: MouseEvent) => {
+    event.preventDefault();
+
     if (text.length === 0) {
       setError(true);
     } else {
       setError(false);
+      console.log(text);
+      axios
+        .post("http://localhost:8000/api", { data: text })
+        .then((response) => {
+          // Handle the response if needed
+          alert("Success");
+        })
+        .catch((error) => {
+          if (error.response) {
+            /*
+             * The request was made and the server responded with a
+             * status code that falls out of the range of 2xx
+             */
+            alert("Error");
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            alert("Error");
+            console.log(error.request);
+          } else {
+            alert("Error");
+            console.log("Error", error.message);
+          }
+        });
     }
   };
 

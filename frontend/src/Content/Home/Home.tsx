@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       setError(false);
       console.log(text);
       axios
-        .post("http://localhost:8000/api", { data: text })
+        .post("http://localhost:8000/", { data: text })
         .then((response) => {
           // Handle the response if needed
           alert("Success");
@@ -30,19 +30,33 @@ const Home: React.FC = () => {
              * The request was made and the server responded with a
              * status code that falls out of the range of 2xx
              */
-            alert("Error");
+            alert("Error Response");
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
           } else if (error.request) {
-            alert("Error");
+            alert("Error Request");
             console.log(error.request);
           } else {
-            alert("Error");
+            alert("Unknown Error");
             console.log("Error", error.message);
           }
         });
     }
+  };
+
+  const read = (event: MouseEvent) => {
+    event.preventDefault();
+    axios
+      .get("http://localhost:5000/")
+      .then((response) => {
+        // Handle the response if needed
+        alert("Success");
+      })
+      .catch((error) => {
+        alert("Error");
+        console.log(error);
+      });
   };
 
   return (

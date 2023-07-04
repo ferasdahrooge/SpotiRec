@@ -10,6 +10,9 @@
   h2 {
     font-size: 28px;
     font-weight: bold;
+    background: -webkit-linear-gradient(#61db3f, rgb(58, 210, 58));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
   .About {
     margin-bottom: 12px;

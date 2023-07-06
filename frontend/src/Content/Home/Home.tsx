@@ -40,7 +40,6 @@ const Home: React.FC = () => {
              */
             alert("Error Response");
             console.log(error.response.status);
-            setSuccess(false);
           } else if (error.request) {
             alert("Error Request");
             console.log(error.request);

@@ -5,24 +5,32 @@ import { Button } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileUpload } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
   const [text, setText] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (success) {
+      navigate("/results");
+    }
+  });
 
   const submit = (event: MouseEvent) => {
     event.preventDefault();
-
     if (text.length === 0) {
       setError(true);
     } else {
       setError(false);
       console.log(text);
       axios
-        .post("http://localhost:8000/", { data: text })
+        .post("http://localhost:8080/api/text", { data: text })
         .then((response) => {
           // Handle the response if needed
-          alert("Success");
+          setSuccess(true);
         })
         .catch((error) => {
           if (error.response) {
@@ -31,9 +39,8 @@ const Home: React.FC = () => {
              * status code that falls out of the range of 2xx
              */
             alert("Error Response");
-            console.log(error.response.data);
             console.log(error.response.status);
-            console.log(error.response.headers);
+            setSuccess(false);
           } else if (error.request) {
             alert("Error Request");
             console.log(error.request);
@@ -48,9 +55,9 @@ const Home: React.FC = () => {
   const read = (event: MouseEvent) => {
     event.preventDefault();
     axios
-      .get("http://localhost:5000/")
+      .get("http://localhost:8080/")
       .then((response) => {
-        // Handle the response if needed
+        console.log(response.data);
         alert("Success");
       })
       .catch((error) => {
@@ -77,7 +84,9 @@ const Home: React.FC = () => {
         <Button
           className='Home__buttons__button'
           variant='contained'
-          onClick={submit}
+          onClick={(e) => {
+            submit(e);
+          }}
         >
           Submit
         </Button>

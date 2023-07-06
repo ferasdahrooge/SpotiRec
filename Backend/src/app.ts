@@ -1,15 +1,15 @@
-import express from "express";
+import express, { Request, Response } from "express";
 
 const app = express();
 const PORT = 8080;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
-app.post("/api/data", (req, res) => {
+app.post("/api/data", (req: Request, res: Response) => {
   console.log(req.body);
   return res.sendStatus(200);
 });

@@ -1,17 +1,24 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 
 const app = express();
 const PORT = 8080;
 
 app.use(express.json());
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
+function handleGetRequest(req: Request, res: Response, next: NextFunction) {
+  console.log(req.params);
+  next();
+}
 
-app.post("/api/data", (req: Request, res: Response) => {
-  console.log(req.body);
+function handleGetValue(req: Request, res: Response, next: NextFunction) {
+  console.log(req.params.textId);
   return res.sendStatus(200);
+}
+
+app.get("/api/data/:textId", [handleGetRequest as any, handleGetValue]);
+
+app.route(/abc/).post((req: Request, res: Response) => {
+  return res.send("POST ");
 });
 
 app.listen(8080, () => {

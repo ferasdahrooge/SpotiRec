@@ -30,6 +30,7 @@ const Home: React.FC = () => {
           .post("http://localhost:8080/text/", { data: text })
           .then((response) => {
             // Handle the response
+            setSuccess(true);
             const value = response.data;
             console.log(value);
             return value;

@@ -21,48 +21,41 @@ const Home: React.FC = () => {
 
   const submit = (event: MouseEvent) => {
     event.preventDefault();
-    if (text.length === 0) {
-      setError(true);
-    } else {
-      setError(false);
-      console.log(text);
-      axios
-        .post("http://localhost:8080/api/text", { data: text })
-        .then((response) => {
-          // Handle the response if needed
-          setSuccess(true);
-        })
-        .catch((error) => {
-          if (error.response) {
-            /*
-             * The request was made and the server responded with a
-             * status code that falls out of the range of 2xx
-             */
-            alert("Error Response");
-            console.log(error.response.status);
-          } else if (error.request) {
-            alert("Error Request");
-            console.log(error.request);
-          } else {
-            alert("Unknown Error");
-            console.log("Error", error.message);
-          }
-        });
+    try {
+      if (text.length === 0) {
+        setError(true);
+      } else {
+        setError(false);
+        axios
+          .post("http://localhost:8080/text/", { data: text })
+          .then((response) => {
+            // Handle the response
+            const value = response.data;
+            console.log(value);
+            return value;
+          })
+          .catch((error) => {
+            // Handle the error if needed
+            if (error.response) {
+              // The request was made and the server responded with a status code
+              alert("Error Response");
+              console.log(error.response.status);
+            } else if (error.request) {
+              // The request was made but no response was received
+              alert("Error Request");
+              console.log(text);
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              alert("Unknown Error");
+              console.log("Error", error.message);
+            }
+          });
+      }
+    } catch (error) {
+      // Handle the error if there is a bug in the code
+      console.log("There is an error in the code.");
     }
-  };
-
-  const read = (event: MouseEvent) => {
-    event.preventDefault();
-    axios
-      .get("http://localhost:8080/")
-      .then((response) => {
-        console.log(response.data);
-        alert("Success");
-      })
-      .catch((error) => {
-        alert("Error");
-        console.log(error);
-      });
   };
 
   return (

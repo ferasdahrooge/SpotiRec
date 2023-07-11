@@ -1,3 +1,3 @@
 # SpotiRec
 
-A Website where users can find their perfect music based what they want based on what they talk about
+A Website where users can discover music that aligns with their preferences, based on what they express or talk about
